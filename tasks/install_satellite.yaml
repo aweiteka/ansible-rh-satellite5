@@ -6,7 +6,7 @@
 #- name: set selinux
 
 - name: create mount point
-  command: mkdir {{ mnt_dir }}a
+  command: mkdir {{ mnt_dir }}
      creates={{ mnt_dir }}
 
 - name: mount install ISO
