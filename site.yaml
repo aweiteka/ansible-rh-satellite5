@@ -1,0 +1,21 @@
+---
+# base playbook for satellite server v5
+
+- hosts: local
+
+  vars:
+     enable_tftp: Y
+     ssl_config_vhost: Y
+     mnt_dir: /media/cdrom
+     channels:
+     - rhel-x86_64-server-6
+     - rhel-x86_64-server-6-cf-me-2
+     - rhel-x86_64-server-6-cf-me-2-beta
+
+  vars_files: private_vars.yaml
+
+  tasks:
+  - include: tasks/install_satellite.yaml
+
+  - include: tasks/sync_content.yaml
+

@@ -1,0 +1,15 @@
+---
+# private vars
+
+admin_email: admin@example.com
+rhn_username: rhn@example.com
+rhn_passwd: my_rhn_passwd
+ssl_org: My Company
+ssl_org_unit: My Organization
+ssl_city: Somewhere
+ssl_state: State
+ssl_country: US
+ssl_passwd: ssl_passwd
+ssl_email: ssl@example.com
+satellite_cert: /root/my-company-inc-5.5.cert
+install_iso: /root/iso/Satellite-5.5.0-RHEL6-x86_64.iso
