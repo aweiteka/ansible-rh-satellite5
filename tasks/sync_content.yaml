@@ -3,5 +3,5 @@
 
 - name: sync content
   command: satellite-sync -c {{ item }} --email {{ admin_email }}
-  with_items: {{ channels }}
+  with_items: "{{ channels }}"
 

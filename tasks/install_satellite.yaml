@@ -7,15 +7,15 @@
 
 - name: create mount point
   command: mkdir {{ mnt_dir }}a
-  creates: {{ mnt_dir }}
+     creates={{ mnt_dir }}
 
 - name: mount install ISO
   command: mount -o loop {{ install_iso }}
-  creates: {{ mnt_dir }}/install.pl
+     creates={{ mnt_dir }}/install.pl
 
 - name: copy answerfile to /tmp
   template: src=answerfile.j2 dest=/tmp/answerfile.txt
 
 - name: install satellite
-  command: {{mnt_dir }}/install.pl --answer-file=/tmp/answerfile.txt
-  creates: /usr/bin/satellite-sync
+  command: ./install.pl --answer-file=/tmp/answerfile.txt
+    chdir={{mnt_dir }} creates=/usr/bin/satellite-sync
