@@ -1,16 +1,27 @@
 ---
 # install satellite server v5
 
-#- name: open fw ports
+- name: set iptables firewall
+  copy: src=iptables dest=/etc/sysconfig/iptables
 
-#- name: set selinux
+- name: turn on iptables
+  service: name=iptables state=started enabled=yes
+
+- name: set selinux
+  command: setenforce 1
+
+- name: download Satellite cert
+  get_url: url={{ satellite_cert_url }} dest={{ satellite_cert }}
+
+- name: download ISO
+  get_url: url={{ download_iso_url }} dest={{ install_iso }}
 
 - name: create mount point
   command: mkdir {{ mnt_dir }}
      creates={{ mnt_dir }}
 
 - name: mount install ISO
-  command: mount -o loop {{ install_iso }}
+  command: mount -o loop {{ install_iso }} {{ mnt_dir }}
      creates={{ mnt_dir }}/install.pl
 
 - name: copy answerfile to /tmp
@@ -18,4 +29,15 @@
 
 - name: install satellite
   command: ./install.pl --answer-file=/tmp/answerfile.txt
-    chdir={{mnt_dir }} creates=/usr/bin/satellite-sync
+    chdir={{ mnt_dir }} creates=/usr/bin/satellite-sync
+
+# enable PAM auth
+#- name: set selinux boolean allow_httpd_mod_auth_pam
+#  command: setsebool -P allow_httpd_mod_auth_pam 1
+
+#- name: enable rhn pam auth service
+#  lineinfile: dest=/etc/rhn/rhn.conf line="pam_auth_service = rhn-satellite" 
+#    insertafter=EOF state=present create=no backup=yes
+
+#- name: copy pam.d file
+#  copy: src=rhn-satellite.pam dest=/etc/pam.d/rhn-satellite

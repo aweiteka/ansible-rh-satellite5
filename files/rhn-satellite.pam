@@ -1,0 +1,5 @@
+#%PAM-1.0
+auth            required      pam_env.so
+auth            sufficient    pam_ldap.so no_user_check
+auth            required      pam_deny.so
+account         required      pam_ldap.so no_user_check

@@ -7,12 +7,15 @@
      enable_tftp: Y
      ssl_config_vhost: Y
      mnt_dir: /media/cdrom
+     install_iso: /root/satellite5.iso
+     satellite_cert: /root/satellite.cert
      channels:
      - rhel-x86_64-server-6
      - rhel-x86_64-server-6-cf-me-2
      - rhel-x86_64-server-6-cf-me-2-beta
+     - rhn-tools-rhel-x86_64-server-6
 
-  vars_files: private_vars.yaml
+  vars_files: custom_vars.yaml
 
   tasks:
   - include: tasks/install_satellite.yaml
