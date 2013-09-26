@@ -15,7 +15,8 @@
      - rhel-x86_64-server-6-cf-me-2-beta
      - rhn-tools-rhel-x86_64-server-6
 
-  vars_files: custom_vars.yaml
+  vars_files: 
+     - custom_vars.yaml
 
   tasks:
   - include: tasks/install_satellite.yaml

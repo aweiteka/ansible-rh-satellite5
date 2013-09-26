@@ -2,10 +2,12 @@
 # install satellite server v5
 
 - name: set iptables firewall
-  copy: src=iptables dest=/etc/sysconfig/iptables
+  copy: src=iptables dest=/etc/sysconfig/iptables mode=600
 
-- name: turn on iptables
-  service: name=iptables state=started enabled=yes
+# fails with insufficient perms. Need to set security context?
+# per http://blog.johnryding.com/post/27059091971/how-to-configure-iptables-with-selinux-through-chef
+#- name: turn on iptables
+#  service: name=iptables state=started enabled=yes
 
 - name: set selinux
   command: setenforce 1
