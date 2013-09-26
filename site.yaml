@@ -1,7 +1,7 @@
 ---
 # base playbook for satellite server v5
 
-- hosts: local
+- hosts: satellite
 
   vars:
      enable_tftp: Y
