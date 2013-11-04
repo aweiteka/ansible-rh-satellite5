@@ -12,4 +12,4 @@ ssl_country: US
 ssl_passwd: ssl_passwd
 ssl_email: ssl@example.com
 satellite_cert_url: http://path/to/satellite.cert 
-install_iso_url: http://path/to/Satellite-5.5.iso
+download_iso_url: http://path/to/Satellite-5.5.iso
